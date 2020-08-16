@@ -1,5 +1,6 @@
 package com.example.memom.memos
 
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -28,5 +29,9 @@ class MemosViewModel @ViewModelInject constructor(
                     throw it
                 }
         }
+    }
+
+    fun onMemoItemClicked() {
+        Log.d("TAG", "memoItemClicked: ")
     }
 }
