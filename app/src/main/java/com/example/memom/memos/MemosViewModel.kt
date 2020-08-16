@@ -31,6 +31,20 @@ class MemosViewModel @ViewModelInject constructor(
         }
     }
 
+    fun moveMemoItem(fromPosition: Int, toPosition: Int) {
+        _memoList.value?.toMutableList()?.let {
+            it.add(toPosition, it.removeAt(fromPosition))
+            _memoList.value = it
+        }
+    }
+
+    fun removeMemoItem(position: Int) {
+        _memoList.value?.toMutableList()?.let {
+            it.removeAt(position)
+            _memoList.value = it
+        }
+    }
+
     fun onMemoItemClicked() {
         Log.d("TAG", "memoItemClicked: ")
     }
