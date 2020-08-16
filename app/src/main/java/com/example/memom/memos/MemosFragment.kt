@@ -19,5 +19,6 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.viewModel = viewModel
+        viewModel.fetchMemoList()
     }
 }
