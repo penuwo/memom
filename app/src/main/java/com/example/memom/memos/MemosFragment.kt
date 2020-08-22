@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.memom.R
 import com.example.memom.common.Binding
 import com.example.memom.databinding.FragmentMemosBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.roundToInt
 
@@ -40,7 +41,12 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
                     }
 
                     override fun onSwiped(viewHolder: ViewHolder, direction: Int) {
-                        viewModel.removeMemoItem(viewHolder.adapterPosition)
+                        val position = viewHolder.adapterPosition
+                        viewModel.removeMemoItem(position)?.let { removedItem ->
+                            Snackbar.make(view, R.string.snack_bar_delete_text, Snackbar.LENGTH_LONG)
+                                .setAction(R.string.undo_delete) { viewModel.addMemoItem(position, removedItem) }
+                                .show()
+                        }
                     }
 
                     override fun onChildDraw(
