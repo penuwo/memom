@@ -35,6 +35,24 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
 
         binding.let {
             it.viewModel = viewModel
+
+            it.bottomAppBar.setNavigationOnClickListener {
+                // TODO: Add navigation handle
+            }
+            it.bottomAppBar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.option -> {
+                        // TODO: Add option handle
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            it.fab.setOnClickListener {
+                // TODO: Add fab handle
+            }
+
             it.memosRecyclerView.layoutManager = LinearLayoutManager(context)
             it.memosRecyclerView.adapter = MemosAdapter(viewLifecycleOwner, viewModel)
             ItemTouchHelper(
@@ -49,6 +67,7 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
                         val position = viewHolder.adapterPosition
                         viewModel.removeMemoItem(position)?.let { removedItem ->
                             Snackbar.make(view, R.string.snack_bar_delete_text, Snackbar.LENGTH_LONG)
+                                .setAnchorView(R.id.fab)
                                 .setAction(R.string.undo_delete) { viewModel.addMemoItem(position, removedItem) }
                                 .show()
                         }
