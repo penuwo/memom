@@ -88,6 +88,7 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
                         val marginVertical = resources.getDimension(R.dimen.memos_delete_icon_margin_vertical).roundToInt()
                         val marginHorizontal = resources.getDimension(R.dimen.memos_delete_icon_margin_horizontal).roundToInt()
                         val iconHeight = viewHolder.itemView.height - marginVertical * 2
+                        val iconTint = requireContext().getColor(R.color.colorPrimary)
                         AppCompatResources.getDrawable(requireContext(), R.drawable.ic_delete)?.also { icon ->
                             icon.bounds = if (dX < 0) {
                                 Rect(
@@ -104,6 +105,7 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
                                     viewHolder.itemView.bottom - marginVertical
                                 )
                             }
+                            icon.setTint(iconTint)
                             icon.draw(c)
                         }
                     }
