@@ -67,6 +67,7 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
                         val position = viewHolder.adapterPosition
                         viewModel.removeMemoItem(position)?.let { removedItem ->
                             Snackbar.make(view, R.string.snack_bar_delete_text, Snackbar.LENGTH_LONG)
+                                .setAnchorView(R.id.fab)
                                 .setAction(R.string.undo_delete) { viewModel.addMemoItem(position, removedItem) }
                                 .show()
                         }
