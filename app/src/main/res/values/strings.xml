@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">memom</string>
+    <string name="option">オプション</string>
     <string name="snack_bar_delete_text">メモを削除しました</string>
     <string name="undo_delete">元に戻す</string>
 </resources>
