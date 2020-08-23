@@ -35,6 +35,24 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
 
         binding.let {
             it.viewModel = viewModel
+
+            it.bottomAppBar.setNavigationOnClickListener {
+                // TODO: Add navigation handle
+            }
+            it.bottomAppBar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.option -> {
+                        // TODO: Add option handle
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            it.fab.setOnClickListener {
+                // TODO: Add fab handle
+            }
+
             it.memosRecyclerView.layoutManager = LinearLayoutManager(context)
             it.memosRecyclerView.adapter = MemosAdapter(viewLifecycleOwner, viewModel)
             ItemTouchHelper(
