@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_SWIPE
@@ -18,7 +19,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.memom.R
+import com.example.memom.add.AddBottomSheetDialogFragment
 import com.example.memom.common.Binding
+import com.example.memom.data.entity.MemoItem
 import com.example.memom.databinding.FragmentMemosBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,16 +62,16 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
                 object : SimpleCallback(UP or DOWN, LEFT or RIGHT) {
 
                     override fun onMove(recyclerView: RecyclerView, viewHolder: ViewHolder, target: ViewHolder): Boolean {
-                        viewModel.moveMemoItem(viewHolder.adapterPosition, target.adapterPosition)
+                        viewModel.moveMemoItemAt(viewHolder.adapterPosition, target.adapterPosition)
                         return true
                     }
 
                     override fun onSwiped(viewHolder: ViewHolder, direction: Int) {
                         val position = viewHolder.adapterPosition
-                        viewModel.removeMemoItem(position)?.let { removedItem ->
+                        viewModel.removeMemoItemAt(position)?.let { removedItem ->
                             Snackbar.make(view, R.string.snack_bar_delete_text, Snackbar.LENGTH_LONG)
                                 .setAnchorView(R.id.fab)
-                                .setAction(R.string.undo_delete) { viewModel.addMemoItem(position, removedItem) }
+                                .setAction(R.string.undo_delete) { viewModel.addMemoItemAt(position, removedItem) }
                                 .show()
                         }
                     }
@@ -113,5 +116,10 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
             ).attachToRecyclerView(it.memosRecyclerView)
         }
         viewModel.fetchMemoList()
+
+        childFragmentManager.setFragmentResultListener(AddBottomSheetDialogFragment.REQUEST_KEY, viewLifecycleOwner) { _, result ->
+            val item = result.getParcelable<MemoItem>(AddBottomSheetDialogFragment.BUNDLE_KEY) ?: return@setFragmentResultListener
+            viewModel.addMemoItem(item)
+        }
     }
 }
