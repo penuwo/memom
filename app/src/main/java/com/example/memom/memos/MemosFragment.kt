@@ -50,7 +50,7 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
             }
 
             it.fab.setOnClickListener {
-                // TODO: Add fab handle
+                AddBottomSheetDialogFragment.show(childFragmentManager)
             }
 
             it.memosRecyclerView.layoutManager = LinearLayoutManager(context)
