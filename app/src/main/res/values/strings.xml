@@ -3,4 +3,5 @@
     <string name="option">オプション</string>
     <string name="snack_bar_delete_text">メモを削除しました</string>
     <string name="undo_delete">元に戻す</string>
+    <string name="save_memo">保存</string>
 </resources>
