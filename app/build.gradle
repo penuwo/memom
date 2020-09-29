@@ -72,6 +72,13 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_with_jetpack_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_with_jetpack_version"
 
+    // Room
+    def room_version = '2.2.5'
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    androidTestImplementation "androidx.room:room-testing:$room_version"
+
     // JUnit
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
