@@ -31,13 +31,6 @@ class MemosViewModel @ViewModelInject constructor(
         }
     }
 
-    fun moveMemoItemAt(fromPosition: Int, toPosition: Int) {
-        _memoList.value?.toMutableList()?.let {
-            it.add(toPosition, it.removeAt(fromPosition))
-            _memoList.value = it
-        }
-    }
-
     fun removeMemoItemAt(position: Int): MemoItem? {
         _memoList.value?.toMutableList()?.let {
             val removedItem = it.removeAt(position)
