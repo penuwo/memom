@@ -1,16 +1,28 @@
 package com.example.memom.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.example.memom.data.dao.MemoDao
 import com.example.memom.data.entity.MemoItem
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import kotlin.random.Random
+import javax.inject.Singleton
 
-class MemosRepository @Inject constructor() {
+@Singleton
+class MemosRepository @Inject constructor(private val memoDao: MemoDao) {
 
-    suspend fun getMemoList(): List<MemoItem> {
-        delay(100L)
-        return List(30) {
-            MemoItem(Random.nextInt().toString())
+    val memoList: LiveData<List<MemoItem>> = memoDao.getMemoListByDateAscending()
+
+    suspend fun addMemoItem(memoItem: MemoItem) {
+        withContext(Dispatchers.IO) {
+            memoDao.insert(memoItem)
+        }
+    }
+
+    suspend fun deleteMemoItem(memoItem: MemoItem) {
+        withContext(Dispatchers.IO) {
+            memoDao.delete(memoItem)
         }
     }
 }
