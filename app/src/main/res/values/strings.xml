@@ -4,4 +4,7 @@
     <string name="snack_bar_delete_text">メモを削除しました</string>
     <string name="undo_delete">元に戻す</string>
     <string name="save_memo">保存</string>
+    <string name="option_sort_label">並べ替え</string>
+    <string name="option_sort_radio_button_asc">新しい順</string>
+    <string name="option_sort_radio_button_desc">古い順</string>
 </resources>
