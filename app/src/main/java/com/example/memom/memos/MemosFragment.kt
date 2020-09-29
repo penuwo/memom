@@ -64,11 +64,10 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
                     override fun onMove(recyclerView: RecyclerView, viewHolder: ViewHolder, target: ViewHolder) = false
 
                     override fun onSwiped(viewHolder: ViewHolder, direction: Int) {
-                        val position = viewHolder.adapterPosition
-                        viewModel.removeMemoItemAt(position)?.let { removedItem ->
+                        viewModel.removeMemoItemAt(viewHolder.adapterPosition)?.let { removedItem ->
                             Snackbar.make(view, R.string.snack_bar_delete_text, Snackbar.LENGTH_LONG)
                                 .setAnchorView(R.id.fab)
-                                .setAction(R.string.undo_delete) { viewModel.addMemoItemAt(position, removedItem) }
+                                .setAction(R.string.undo_delete) { viewModel.addMemoItem(removedItem) }
                                 .show()
                         }
                     }
@@ -112,7 +111,6 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
                 }
             ).attachToRecyclerView(it.memosRecyclerView)
         }
-        viewModel.fetchMemoList()
 
         childFragmentManager.setFragmentResultListener(AddBottomSheetDialogFragment.REQUEST_KEY, viewLifecycleOwner) { _, result ->
             val item = result.getParcelable<MemoItem>(AddBottomSheetDialogFragment.BUNDLE_KEY) ?: return@setFragmentResultListener
