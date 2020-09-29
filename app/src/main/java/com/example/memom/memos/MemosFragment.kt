@@ -26,6 +26,7 @@ import com.example.memom.databinding.FragmentMemosBinding
 import com.example.memom.option.OptionBottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Math.max
 import kotlin.math.roundToInt
 
 @AndroidEntryPoint
@@ -85,14 +86,14 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
                         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
 
                         if (actionState != ACTION_STATE_SWIPE) return
-                        val marginVertical = resources.getDimension(R.dimen.memos_delete_icon_margin_vertical).roundToInt()
+                        val iconSize = resources.getDimension(R.dimen.memos_delete_icon_size).roundToInt()
                         val marginHorizontal = resources.getDimension(R.dimen.memos_delete_icon_margin_horizontal).roundToInt()
-                        val iconHeight = viewHolder.itemView.height - marginVertical * 2
+                        val marginVertical = (viewHolder.itemView.height - iconSize) / 2
                         val iconTint = requireContext().getColor(R.color.colorPrimary)
                         AppCompatResources.getDrawable(requireContext(), R.drawable.ic_delete)?.also { icon ->
                             icon.bounds = if (dX < 0) {
                                 Rect(
-                                    viewHolder.itemView.right - iconHeight - marginHorizontal,
+                                    viewHolder.itemView.right - iconSize - marginHorizontal,
                                     viewHolder.itemView.top + marginVertical,
                                     viewHolder.itemView.right - marginHorizontal,
                                     viewHolder.itemView.bottom - marginVertical
@@ -101,7 +102,7 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
                                 Rect(
                                     viewHolder.itemView.left + marginHorizontal,
                                     viewHolder.itemView.top + marginVertical,
-                                    viewHolder.itemView.left + iconHeight + marginHorizontal,
+                                    viewHolder.itemView.left + iconSize + marginHorizontal,
                                     viewHolder.itemView.bottom - marginVertical
                                 )
                             }
