@@ -72,6 +72,10 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_with_jetpack_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_with_jetpack_version"
 
+    // Preference
+    def preference_version = "1.1.1"
+    implementation "androidx.preference:preference-ktx:$preference_version"
+
     // Room
     def room_version = '2.2.5'
     implementation "androidx.room:room-runtime:$room_version"

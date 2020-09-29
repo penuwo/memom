@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.memom.option.OptionViewModel"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="32dp"
+        >
+
+        <TextView
+            android:id="@+id/option_sort_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:paddingHorizontal="24dp"
+            android:text="@string/option_sort_label"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/option_sort_radio_group"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <RadioGroup
+            android:id="@+id/option_sort_radio_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="24dp"
+            android:checkedButton="@{ viewModel.getSortRadioButtonId() }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <RadioButton
+                android:id="@+id/option_sort_radio_button_date_desc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/option_sort_radio_button_desc"
+                android:paddingHorizontal="16dp"
+                android:onClick="@{ () -> viewModel.onSortByDateDescendingClicked() }"
+                />
+
+            <RadioButton
+                android:id="@+id/option_sort_radio_button_date_asc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/option_sort_radio_button_asc"
+                android:paddingHorizontal="16dp"
+                android:onClick="@{ () -> viewModel.onSortByDateAscendingClicked() }"
+                />
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
