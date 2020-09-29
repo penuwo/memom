@@ -15,7 +15,7 @@ class AddViewModel @ViewModelInject constructor() : ViewModel() {
 
     fun saveMemoItem() {
         memoText.value?.let {
-            _addItem.value = MemoItem(it)
+            _addItem.value = MemoItem(System.currentTimeMillis(), it)
         }
     }
 }
