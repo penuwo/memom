@@ -12,7 +12,9 @@ import javax.inject.Singleton
 @Singleton
 class MemosRepository @Inject constructor(private val memoDao: MemoDao) {
 
-    val memoList: LiveData<List<MemoItem>> = memoDao.getMemoListByDateAscending()
+    fun getMemoListByDateAscending(): LiveData<List<MemoItem>> = memoDao.getMemoListByDateAscending()
+
+    fun getMemoListByDateDescending(): LiveData<List<MemoItem>> = memoDao.getMemoListByDateDescending()
 
     suspend fun addMemoItem(memoItem: MemoItem) {
         withContext(Dispatchers.IO) {
