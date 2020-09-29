@@ -23,6 +23,7 @@ import com.example.memom.add.AddBottomSheetDialogFragment
 import com.example.memom.common.Binding
 import com.example.memom.data.entity.MemoItem
 import com.example.memom.databinding.FragmentMemosBinding
+import com.example.memom.option.OptionBottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.roundToInt
@@ -45,7 +46,7 @@ class MemosFragment : Fragment(R.layout.fragment_memos) {
             it.bottomAppBar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.option -> {
-                        // TODO: Add option handle
+                        OptionBottomSheetDialogFragment.show(childFragmentManager)
                         true
                     }
                     else -> false
