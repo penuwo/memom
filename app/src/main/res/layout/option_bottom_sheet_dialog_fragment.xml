@@ -43,21 +43,21 @@
             >
 
             <RadioButton
-                android:id="@+id/option_sort_radio_button_date_asc"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/option_sort_radio_button_asc"
-                android:paddingHorizontal="16dp"
-                android:onClick="@{ () -> viewModel.onSortByDateAscendingClicked() }"
-                />
-
-            <RadioButton
                 android:id="@+id/option_sort_radio_button_date_desc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/option_sort_radio_button_desc"
                 android:paddingHorizontal="16dp"
                 android:onClick="@{ () -> viewModel.onSortByDateDescendingClicked() }"
+                />
+
+            <RadioButton
+                android:id="@+id/option_sort_radio_button_date_asc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/option_sort_radio_button_asc"
+                android:paddingHorizontal="16dp"
+                android:onClick="@{ () -> viewModel.onSortByDateAscendingClicked() }"
                 />
         </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>

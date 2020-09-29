@@ -14,7 +14,7 @@ class SortPreferenceRepository @Inject constructor(private val sharedPreferences
     private val _sortPreferenceLiveData = MutableLiveData<SortType>(getSortPreference())
     val sortPreferenceLiveData: LiveData<SortType> = _sortPreferenceLiveData.distinctUntilChanged()
 
-    fun getSortPreference(): SortType = SortType.values()[sharedPreferences.getInt(SORT_SETTING_KEY, 0)]
+    fun getSortPreference(): SortType = SortType.values()[sharedPreferences.getInt(SORT_SETTING_KEY, SortType.DateDescending.ordinal)]
 
     fun setSortPreference(sortType: SortType) {
         sharedPreferences.edit {
@@ -29,6 +29,6 @@ class SortPreferenceRepository @Inject constructor(private val sharedPreferences
 }
 
 enum class SortType {
-    DateAscending,
-    DateDescending
+    DateDescending,
+    DateAscending
 }
